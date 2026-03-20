@@ -1,0 +1,72 @@
+--- Task 1: System Monitoring ---
+Hit:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+Hit:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease
+Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+Hit:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease
+Reading package lists...
+System Monitoring Report - Fri Mar 20 17:48:44 UTC 2026
+--------------------------------
+1. Disk Usage (df -h):
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         453G  1.6G  428G   1% /
+tmpfs            64M     0   64M   0% /dev
+shm              64M     0   64M   0% /dev/shm
+/dev/vda1       453G  1.6G  428G   1% /etc/hosts
+tmpfs           3.9G     0  3.9G   0% /proc/scsi
+tmpfs           3.9G     0  3.9G   0% /sys/firmware
+
+2. Directory Usage (du -sh /var /etc /usr):
+78M	/var
+936K	/etc
+150M	/usr
+
+3. Top 5 Resource-Intensive Processes (CPU):
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0   3876  2552 ?        Ss   17:48   0:00 /bin/bash /root/run_all.sh
+root         7  0.0  0.0   3876  2676 ?        S    17:48   0:00 /bin/bash ./task1_monitoring.sh
+root       214  0.0  0.0   6440  2276 ?        R    17:48   0:00 ps aux --sort=-%cpu
+root       215  0.0  0.0   2236   828 ?        S    17:48   0:00 head -n 6
+
+4. Top 5 Resource-Intensive Processes (Memory):
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         7  0.0  0.0   3876  2676 ?        S    17:48   0:00 /bin/bash ./task1_monitoring.sh
+root         1  0.0  0.0   3876  2552 ?        Ss   17:48   0:00 /bin/bash /root/run_all.sh
+root       216  0.0  0.0   6440  2340 ?        R    17:48   0:00 ps aux --sort=-%mem
+root       217  0.0  0.0   2236   828 ?        S    17:48   0:00 head -n 6
+
+System Monitoring setup complete. Logs saved to /var/log/system_monitor.log.
+
+--- Task 2: User Management and Access Control ---
+User Account Details:
+Sarah:x:1000:1000::/home/Sarah:/bin/bash
+mike:x:1001:1001::/home/mike:/bin/bash
+Password Expiration Details (Sarah):
+Maximum number of days between password change		: 30
+Directory Permissions:
+drwx------ 2 Sarah Sarah 4096 Mar 20 17:48 /home/Sarah/workspace
+drwx------ 2 mike mike 4096 Mar 20 17:48 /home/mike/workspace
+User Management setup complete.
+
+--- Task 3: Backup Configuration for Web Servers ---
+Cron jobs configured:
+Sarah's crontab:
+0 0 * * 2 /usr/local/bin/backup_apache.sh
+Mike's crontab:
+0 0 * * 2 /usr/local/bin/backup_nginx.sh
+Verifying backup integrity in /backups/:
+total 8.0K
+-rw-r--r-- 1 root root 231 Mar 20 17:48 apache_backup_2026-03-20.tar.gz
+-rw-r--r-- 1 root root 231 Mar 20 17:48 nginx_backup_2026-03-20.tar.gz
+Integrity check (listing files in Apache backup):
+etc/httpd/
+etc/httpd/httpd.conf
+var/www/html/
+var/www/html/index.html
+Integrity check (listing files in Nginx backup):
+etc/nginx/
+etc/nginx/nginx.conf
+usr/share/nginx/html/
+usr/share/nginx/html/index.html
+Backup Configuration setup complete.
+
+=== ALL TASKS COMPLETED SUCCESSFULLY ===
